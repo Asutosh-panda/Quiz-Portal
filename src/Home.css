@@ -1,0 +1,19 @@
+.Home{
+    display: flex;
+    justify-content: space-between;
+}
+.HomeText{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.HomeText h1{
+    text-align: center;
+    width: 100%;
+    
+    font-size: x-large;
+    font-weight: 900;
+}
