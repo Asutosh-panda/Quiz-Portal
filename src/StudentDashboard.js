@@ -7,10 +7,10 @@ const StudentDashboard = ()=>{
             <div className="Now">
                 <h1> Now </h1>
                 <div className="ExamCard-container">
-                 <ExamCard/>
-                 <ExamCard/>
-                 <ExamCard/>
-                 <ExamCard/>
+                 <ExamCard type ='student'/>
+                 <ExamCard type ='student'/>
+                 <ExamCard type ='student'/>
+                 <ExamCard type ='student'/>
                  </div>
                  
             </div>

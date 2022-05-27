@@ -179,4 +179,10 @@ a.button:hover {
   box-shadow: none;
   
 }
-
+.loginexclamation{
+  color: red;
+  size: 4vh;
+  margin-left: 2vh;
+  font-size: 4vh;
+  visibility: hidden;
+}

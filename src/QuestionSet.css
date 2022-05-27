@@ -1,0 +1,16 @@
+.QuestionSet{
+    display: flex;
+}
+.Question textarea{
+    width: 100%;
+}
+.QuestionSet .QuestionContainer{
+    width: 50%;
+    margin-left: 15vh;
+}
+.QuestionSet .NumberContainer{
+  margin-left: auto;
+}
+.QuestionSet .Options label{
+    padding: 2vh;
+}

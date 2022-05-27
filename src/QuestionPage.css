@@ -1,17 +1,23 @@
 .QuestionPage{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .QuestionContainer{
     height: 100vh;
 }
 .QuestionBox{
   
-   min-height: 70vh;
+    min-height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 
+}
+.QuestionPage{
+    margin-left: 15vh;
+}
+.NumberContainer{
+    margin-right: 15vh;
 }
 .Options{
     display: flex;
