@@ -1,4 +1,4 @@
-.ExamCard{
+.PrevResult{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,8 +8,10 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     width: 20%;
     margin-top: 4vh;
+    margin-right: 4vh;
+    margin-left: 2vh;
 }
-.ExamCard-header{
+.PrevResult-header{
     text-align: center;
     border-bottom: 2px solid white;
     width: 100%;
@@ -17,7 +19,7 @@
     padding-top: 2vh;
    
 }
-.ExamCard-body{
+.PrevResult-body{
     display: flex;
     flex-direction: column;
     border-bottom: 2px solid white;
@@ -26,19 +28,22 @@
     padding-bottom: 4vh;
     padding-top: 2vh;
 }
-.ExamCard-footer{
+.PrevResult-footer{
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-bottom: 3vh;
 
 }
-.ExamCard-footer {
+.PrevResult-div{
+    width: 100%;
+}
+.PrevResult-footer {
     height: 40%;
     width: 40%;
     margin: 2vh;
 }
-.ExamCard-footer input{
+.PrevResult-footer input{
     width: 60%;
     height: 25%;
     margin-bottom: 3vh;

@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { useHistory } from "react-router-dom";
 import "./Login.css"
+import axios from 'axios';  
+import {LoginContext} from './LoginProvider'
 
 const Login = () => {
     const history = useHistory();
+    const [isLogged,setIsLogged] = useContext(LoginContext);
+
     const [mail,setMail] = useState("")
     const [password,setPassword] =useState("")
-    const [type,setType] = useState("")
+    const [loggedIn,setLoggedIn] = useContext(LoginContext); 
     const validateEmail = (email) => {
         return String(email)
           .toLowerCase()
@@ -16,10 +20,7 @@ const Login = () => {
       };
     const clickFunc=(e)=>{
         e.preventDefault();
-        if(type==="")
-        document.getElementById("type").style.visibility="visible"
-        else
-        document.getElementById("type").style.visibility="hidden"
+        
 
          
         if(!validateEmail(mail)){
@@ -30,35 +31,41 @@ const Login = () => {
             if(password=="")
             document.getElementById("pass").style.visibility="visible"
             else{
-            document.getElementById("pass").style.visibility="hidden"       
-            if(type==="Student"){
-                history.push("/StudentDashboard");
-            }
-            else if(type===""){
-                console.log("Please select a type")
-            }
-            else{
-                history.push("/TeacherDashboard");
+            document.getElementById("pass").style.visibility="hidden" 
+            let payload = {
+                "username":mail,
+                "password":password
+            }    
+          
+                axios.post('https://quiz-portal-api.herokuapp.com/api/auth/login',payload)
+                .then(res=>{console.log(res.data.user.role);
+                            localStorage.setItem("token",res.data.data)
+                            localStorage.setItem("username",res.data.user.username);
+                            localStorage.setItem("type",res.data.user.role);
+                            setLoggedIn(true);
+                            if(res.data.user.role ==="Student"){
+                                history.push("/StudentDashboard")
+                            }
+                            else{
+                                history.push("/TeacherDashboard");
+                            }
+                            })
+                            
+                .catch(e=>console.log(e))
+        
+           
         }
     }
     }
 
        
-    }
+    
     return (
             <div className="Login">
            <div class="testbox">
             <h1>Login</h1>
 
                 <form action="/">
-                    
-                    <div class="accounttype"  onChange={(e)=>setType(e.target.value)}>
-                    <input type="radio" value="Student" id="radioOne" name="account"  />
-                    <label for="radioOne" class="radio" check>Student</label>
-                    <input type="radio" value="Teacher" id="radioTwo" name="account" />
-                    <label for="radioTwo" class="radio">Teacher</label>
-                    <i class="fa fa-exclamation loginexclamation" id="type" aria-hidden="true"></i>
-                    </div>
                     
                     <div class="loginDetails">
                     <div className="regdMail">

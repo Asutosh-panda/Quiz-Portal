@@ -10,20 +10,25 @@ import TeacherDashboard from './TeacherDashboard';
 import QuestionPage from './QuestionPage';
 import QuestionSet from './QuestionSet';
 import Result  from './Result';
+import { LoginProvider } from './LoginProvider';
+import TeacherCard from './TeacherCard';
 const App= ()=> {
 
   return (<>
+  <LoginProvider>
       <Nav/>
       <Switch>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/register" component={Register}/>
         <Route exact path="/TeacherDashboard" component={TeacherDashboard}/>
+        <Route exact path="/TeacherCard" component={TeacherCard}/>
         <Route exact path="/StudentDashboard" component={StudentDashboard}/>
         <Route exact path="/QuestionPage" component={QuestionPage}/>
         <Route exact path="/QuestionSet" component={QuestionSet}/>
         <Route exact path="/Result" component={Result}/>
         <Route path="/" component={Home}/>
       </Switch>
+      </LoginProvider>
   </>
   );
 }

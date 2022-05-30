@@ -1,22 +1,79 @@
-import React from "react";
-import ExamCard from "./ExamCard";
-import "./StudentDashboard.css";
-const StudentDashboard = ()=>{
+import React,{useState} from "react";
+import { useHistory } from "react-router-dom";
+
+import PrevResult from "./PrevResult";
+import "./TeacherDashboard.css";
+const TeacherDashboard = ()=>{
+    const history = useHistory()
+    const [prev_exam,setPrev_exam] = useState([
+        {
+            title:"OS",
+            date:"02.04.2022",
+            nques :"15",
+            time:"30",
+             
+        },
+        { 
+            title:"CN",
+            date:"02.04.2022",
+            nques :"5",
+            time:"20",
+             
+        },{
+            title:"CN",
+            date:"02.04.2022",
+            nques :"5",
+            time:"20",
+        },{
+            title:"CN",
+            date:"02.04.2022",
+            nques :"5",
+            time:"20",
+        },{
+            title:"CN",
+            date:"02.04.2022",
+            nques :"5",
+            time:"20",
+        },
+        {
+            title:"CN",
+            date:"02.04.2022",
+            nques :"5",
+            time:"20",
+        },{
+            title:"CN",
+            date:"02.04.2022",
+            nques :"5",
+            time:"20",
+        }
+    ]);
+    const examArray = prev_exam.map((exam,index) => {
+        return(
+            <PrevResult props={exam} key={index}/>
+        )
+    })
+   
+    const createQuiz = ()=>{ 
+        history.push('/TeacherCard')
+        
+    }
     return(
         <div className="TeacherDashboard">
             <div className="AssignedPapers">
                 <h1> AssignedPapers</h1>
-                <div className="ExamCard-container">
-                 <ExamCard type='teacher'/>
-                 <ExamCard type='teacher'/>
-                 <ExamCard type='teacher'/>
-                 <ExamCard type='teacher'/>
+                <div className="AssignedPapers-container">
+                <div className="AssignedPapers-previous">
+                    {examArray}
+                </div>
+                <div className="CreateExam">
+                    <i class="fa fa-plus" aria-hidden="true"  onClick={createQuiz} ></i>
+                    <label> Create Exam </label>
                  </div>
-                 
+                </div>
             </div>
     
         </div>
     )
 }
 
-export default StudentDashboard
+export default TeacherDashboard

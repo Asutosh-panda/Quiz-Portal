@@ -1,0 +1,24 @@
+.CreateExam{
+    display: flex;
+    justify-content: center;
+    margin-top: 10vh;
+    flex-direction: column;
+    align-items: center;
+
+}
+.AssignedPapers-previous{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    
+}
+.CreateExam i{
+    font-size: 4vh;
+    color: dodgerblue;
+}
+.CreateExam label{
+  visibility: hidden;
+}
+.CreateExam i:hover + label{
+   
+    visibility: visible;
+} 

@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
+
 import "./QuestionSet.css"
-const QuestionSet=()=>{
+const QuestionSet=(props)=>{
+   
     const [id,setId] = useState(1);
     const [question,setQuestion] = useState("");
     const [option1,setOption1] = useState("");
@@ -8,7 +10,9 @@ const QuestionSet=()=>{
     const [option3,setOption3] = useState("");
     const [option4,setOption4] = useState("");
     const [answer,setAnswer] = useState("");
-
+    // const title = props.title;
+    const nques = props.location.state.nques;
+    console.log(props);
     const [questionArray,setQuestionArray]=useState([
         {
              "question":"",
@@ -241,9 +245,10 @@ const QuestionSet=()=>{
         nextQuestion()
         console.log("submit");
     }
-       
+   
+    console.log(props.location.state.nques)
     var but_list=[]
-    for(var i=1;i<=20;i++)
+    for(var i=1;i<=parseInt(nques);i++)
             but_list.push(<button className="numberbutton" id={i} onClick={clickQuestion}>{i}</button>)
 
     return ( 

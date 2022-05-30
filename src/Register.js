@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Register.css";
 import { useHistory } from "react-router-dom";
+import axios from 'axios';  
 const Register = () => {
     const history = useHistory();
     const [mail,setMail] = useState("")
@@ -8,7 +9,7 @@ const Register = () => {
     const [password,setPassword] =useState("")
     const [password1,setPassword1] =useState("")
     const [type,setType] = useState("")
-    const [gender,setGender] = useState("")
+
 
     const validateEmail = (email) => {
         return String(email)
@@ -19,8 +20,8 @@ const Register = () => {
       };
     const clickFuncRegd=(e)=>{
         e.preventDefault();
-        console.log(mail,name,type,gender,password,password1)
-        if( name==="" || type==="" || gender==="" || password==="" || password1==="" || !validateEmail(mail) || password!==password1){
+        console.log(mail,name,type,password,password1)
+        if( name==="" || type==="" || password==="" || password1==="" || !validateEmail(mail) || password!==password1){
             if(name==="")
                 document.getElementById("name").style.visibility="visible"
             else
@@ -31,10 +32,7 @@ const Register = () => {
             else
             document.getElementById("type").style.visibility="hidden"
 
-            if(gender==="")
-            document.getElementById("gender").style.visibility="visible"
-            else
-            document.getElementById("gender").style.visibility="hidden"
+     
 
             if(password==="")
             document.getElementById("pass").style.visibility="visible"
@@ -59,7 +57,24 @@ const Register = () => {
         }
         else{
                 if(password===password1){
-                    history.push('/login')
+                    const payload = {
+                        "username":mail,
+                        "password":password,
+                        "name":name,
+                        "role":type
+                      }
+                      
+                    //   axios({
+                    //     method: 'post',
+                    //     url: 'https://quiz-portal-api.herokuapp.com/api/auth/register',
+                    //     data: payload, // you are sending body instead
+                    //     headers: {
+                    //      // 'Authorization': `bearer ${token}`,
+                    //     'Content-Type': 'application/json'
+                    //     }, 
+                    //   })
+                      axios.post('https://quiz-portal-api.herokuapp.com/api/auth/register',payload).then(res=>{console.log(res); history.push('/login')}).catch(e=>{console.log(e);alert("user exists");})
+                    // history.push('/login')
                 }
                 else{
                     document.getElementById("pass1").style.visibility="visible"
@@ -104,13 +119,7 @@ const Register = () => {
                     <i class="fa fa-exclamation exclamation" id="pass1" aria-hidden="true"></i>
                     </div>
                 </div>
-                <div class="gender" onChange={(e)=>setGender(e.target.value)}>
-                    <input type="radio" value="male" id="male" name="gender" />
-                    <label for="male" class="radio" chec>Male</label>
-                    <input type="radio" value="female" id="female" name="gender" />
-                    <label for="female" class="radio">Female</label>
-                    <i class="fa fa-exclamation exclamation" id="gender" aria-hidden="true"></i>
-                </div> 
+       
                 <p>By clicking Register, you agree on our <a href="/register">terms and condition</a>.</p>
                 <a onClick={clickFuncRegd} href="/login" class="button">Register</a>
                 </form>
