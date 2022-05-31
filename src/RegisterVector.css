@@ -1,0 +1,104 @@
+.registerVector{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4vh;
+
+}
+#Cat1{
+   
+  transform: translate(0px, 30px);
+    animation: cat1ani ease-in-out 0.8s infinite alternate;
+}
+@keyframes cat1ani{
+    0%{
+        transform: translate(0px,-5px);
+    }
+    75%{
+       
+    }
+    100%{
+        transform: translate(0px,0px);
+}
+}
+#Cat2{
+   
+    transform: translate(0px, 30px);
+      animation: cat2ani ease-in-out 1s infinite alternate;
+  }
+  @keyframes cat2ani{
+      0%{
+          transform: translate(0px,-15px);
+      }
+      75%{
+         
+      }
+      100%{
+          transform: translate(0px,0px);
+  }
+  }
+  @keyframes ballani{
+    0%{
+        fill: yellow;
+        transform: translateY(-10px);
+        
+    }
+    40%{
+        fill:red;
+
+    }
+    100%{
+        transform: translateY(10px);
+        
+        
+    }
+}
+
+  #balls{
+     fill: #1400f16b;
+    /* animation: ballani ease-in-out infinite ;
+    animation-duration: 1s;*/
+ }
+   
+  #balls :nth-child(2){
+    
+    animation: ballani ease-in-out  infinite alternate;
+    animation-duration: 8s;
+     animation-delay: 2s;
+     transform-origin: center;
+}
+#balls :nth-child(3){
+    animation: ballani ease-in-out infinite alternate;
+    animation-duration: 8s;
+     animation-delay: 3s;
+}
+#balls :nth-child(1){
+    animation: ballani ease-in-out infinite alternate;
+    animation-duration: 8s;
+     animation-delay: 4s;
+     transform-origin: center;
+}
+#balls :nth-child(4){
+    animation: ballani ease-in-out infinite alternate;
+    animation-duration: 8s;
+     animation-delay: 5s;
+}
+#balls :nth-child(7){
+    animation: ballani ease-in-out infinite alternate;
+    animation-duration: 8s;
+     animation-delay: 6s;
+}
+#balls :nth-child(5){
+    animation: ballani ease-in-out infinite alternate;
+    animation-duration: 8s;
+     animation-delay: 7s;
+}
+#balls :nth-child(6){
+    animation: ballani ease-in-out infinite alternate;
+    animation-duration: 8s;
+     animation-delay: 8s;
+} 
+#ball1{
+    animation: ball1ani ease-in-out infinite ;
+    transform-origin:center ;
+}

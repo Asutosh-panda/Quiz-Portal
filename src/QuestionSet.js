@@ -1,16 +1,17 @@
 import React, { useState} from "react";
-
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 import "./QuestionSet.css"
 const QuestionSet=(props)=>{
-   
-    const [id,setId] = useState(1);
+    const history = useHistory();
+    const [id,setId] = useState(0);
     const [question,setQuestion] = useState("");
     const [option1,setOption1] = useState("");
     const [option2,setOption2] = useState("");
     const [option3,setOption3] = useState("");
     const [option4,setOption4] = useState("");
     const [answer,setAnswer] = useState("");
-    // const title = props.title;
+    const title =props.location.state.title;
     const nques = props.location.state.nques;
     console.log(props);
     const [questionArray,setQuestionArray]=useState([
@@ -202,16 +203,21 @@ const QuestionSet=(props)=>{
     const clickQuestion=(e)=>{
         setId(parseInt(e.target.id))
         console.log(id,"oj")
-        if(questionArray[parseInt(e.target.id)-1].question=="")
+        if(questionArray[parseInt(e.target.id)].question=="")
             init()
         else
-            init(questionArray[parseInt(e.target.id)-1].question,questionArray[parseInt(e.target.id)-1].option1,questionArray[parseInt(e.target.id)-1].option2,questionArray[parseInt(e.target.id)-1].option3,questionArray[parseInt(e.target.id)-1].option4,questionArray[parseInt(e.target.id)-1].answer)
+            init(questionArray[parseInt(e.target.id)].question,questionArray[parseInt(e.target.id)].option1,questionArray[parseInt(e.target.id)].option2,questionArray[parseInt(e.target.id)].option3,questionArray[parseInt(e.target.id)].option4,questionArray[parseInt(e.target.id)].answer)
         
         console.log(id)
     }
     const nextQuestion=()=>{
-        if(id<20){
-            
+        if(id==nques-1){
+            document.getElementById("next").disabled = true;
+        }
+           
+        
+        else{
+            document.getElementById("prev").disabled = false;
             console.log(id)
             if(questionArray[id].question=="")
                 init()
@@ -221,45 +227,98 @@ const QuestionSet=(props)=>{
         }
     }
     const prevQuestion=()=>{
-        if(id>1){
-           
+        if(id<1){
+            document.getElementById("prev").disabled = true;
+        }
+        else{
+            
+            document.getElementById("next").disabled = false;
             console.log(id)
-            if(questionArray[id-2].question=="")
+            if(questionArray[id-1].question=="")
                 init()
            else
-            init(questionArray[id-2].question,questionArray[id-2].option1,questionArray[id-2].option2,questionArray[id-2].option3,questionArray[id-2].option4,questionArray[id-2].answer)
+            init(questionArray[id-1].question,questionArray[id-1].option1,questionArray[id-1].option2,questionArray[id-1].option3,questionArray[id-1].option4,questionArray[id-1].answer)
            setId(id-1);
         }
     }
-    const submitQuestion=(e)=>{
+    const saveQuestion=(e)=>{
         e.preventDefault();
         // console.log(question,option1,option2,option3,option4,answer)
-        questionArray[id-1].question=question;
-        questionArray[id-1].option1=option1;
-        questionArray[id-1].option2=option2;
-        questionArray[id-1].option3 = option3;
-        questionArray[id-1].option4 = option4;
-        questionArray[id-1].answer = answer;
-        init()
+        questionArray[id].question=question;
+        questionArray[id].option1=option1;
+        questionArray[id].option2=option2;
+        questionArray[id].option3 = option3;
+        questionArray[id].option4 = option4;
+        questionArray[id].answer = answer;
+       
         console.log(questionArray)
         nextQuestion()
+        if(id!=nques-1){
+            init()
+        }
+        
         console.log("submit");
+    }
+    const submitQuestion=()=>{
+        console.log(questionArray);
+        let qobj =[]
+        questionArray.forEach((val,idx)=>{
+           if(val.question!=""){
+               let obj={'question':val.question,'options':[val.option1,val.option2,val.option3,val.option4]}
+                qobj.push(obj)
+           }       
+         })
+
+        let ansarr =[]
+        questionArray.forEach((val,idx)=>{
+            if(val.question!="")
+                ansarr.push(val.answer);
+        })
+
+        console.log(qobj,"qobj")
+        console.log(ansarr,"ansarr")
+        let payload = {
+            "name": title,
+            "questions": qobj,
+            "answers": ansarr,
+            "totalQuestions":nques,
+            "creator":localStorage.getItem('userId')
+
+        }
+        var token = localStorage.getItem('token')
+     
+        console.log(payload,"payload")
+        console.log(token,"token")
+        axios.post('https://quiz-portal-api.herokuapp.com/api/quiz/createQuiz/', payload,{ 
+            headers: {
+                'x-auth-token': token,
+                'Accept' : 'application/json',
+                'Content-Type': 'application/json'
+            }
+            
+        }
+        
+   )
+        .then(res=>{console.log(res.data)})
+        .catch(e=>console.log(e))
+        history.push("/TeacherDashboard");
     }
    
     console.log(props.location.state.nques)
     var but_list=[]
-    for(var i=1;i<=parseInt(nques);i++)
-            but_list.push(<button className="numberbutton" id={i} onClick={clickQuestion}>{i}</button>)
+    for(var i=0;i<parseInt(nques);i++)
+            but_list.push(<button className="numberbutton" id={i} onClick={clickQuestion}>{i+1}</button>)
 
     return ( 
         <div className="QuestionSet">
             <div className="QuestionContainer">
                 <div className="QuestionBox">
                     <div className="Question">
-                      <h2>{id} <textarea type="text" onChange={e=>setQuestion(e.target.value)} placeholder="Enter the question" value={question} required/></h2>
+                      <h2>{parseInt(id)+1} <textarea type="text" onChange={e=>setQuestion(e.target.value)} placeholder="Enter the question" value={question} required/></h2>
                     </div>
                     <div className="Options">
-                    
+
+
                     <label>(A) <input type="text" onChange={e=>setOption1(e.target.value)} placeholder="Enter the option " value={option1} required/></label>
                     <label>(B) <input type="text" onChange={e=>setOption2(e.target.value)} placeholder="Enter the option " value={option2} required/></label>
                     <label>(C) <input type="text" onChange={e=>setOption3(e.target.value)} placeholder="Enter the option " value={option3} required/></label>
@@ -267,9 +326,10 @@ const QuestionSet=(props)=>{
                     <label>(Answer :) <input type="text" onChange={e=>setAnswer(e.target.value)} placeholder="Enter the Option" value={answer} required/></label>
                     </div>
                     <div className="QuestionButton">
-                        <button className="prev" onClick={prevQuestion}>Prev</button>
-                        <button className="next" onClick={nextQuestion}>next</button>
-                        <button className="submit" type="submit" onClick={submitQuestion}>save</button>
+                        <button className="prev" id ="prev" onClick={prevQuestion}>Prev</button>
+                        <button className="next" id = "next" onClick={nextQuestion}>next</button> 
+                        <button className="save"  onClick={saveQuestion}>save</button>
+                        <button className="submit" type="submit" onClick={submitQuestion}>submit</button>
                     </div>
                 </div>
             </div>

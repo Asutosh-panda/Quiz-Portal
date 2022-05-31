@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Register.css";
 import { useHistory } from "react-router-dom";
 import axios from 'axios';  
+import RegisterVector from "./RegisterVector";
 const Register = () => {
     const history = useHistory();
     const [mail,setMail] = useState("")
@@ -124,6 +125,7 @@ const Register = () => {
                 <a onClick={clickFuncRegd} href="/login" class="button">Register</a>
                 </form>
 </div>
+   <RegisterVector/>
         </div>
     )
 }

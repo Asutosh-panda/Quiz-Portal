@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import "./Login.css"
 import axios from 'axios';  
 import {LoginContext} from './LoginProvider'
+import LoginVector from "./LoginVector ";
 
 const Login = () => {
     const history = useHistory();
@@ -38,10 +39,11 @@ const Login = () => {
             }    
           
                 axios.post('https://quiz-portal-api.herokuapp.com/api/auth/login',payload)
-                .then(res=>{console.log(res.data.user.role);
+                .then(res=>{console.log(res.data,"res");
                             localStorage.setItem("token",res.data.data)
                             localStorage.setItem("username",res.data.user.username);
                             localStorage.setItem("type",res.data.user.role);
+                            localStorage.setItem("userId",res.data.user._id);
                             setLoggedIn(true);
                             if(res.data.user.role ==="Student"){
                                 history.push("/StudentDashboard")
@@ -84,7 +86,8 @@ const Login = () => {
                 <a onClick={clickFunc} href="/login" class="button">Login</a>
                 </div>
                 </form>
-</div>
+          </div>
+          <LoginVector/>
         </div>
         
     )
