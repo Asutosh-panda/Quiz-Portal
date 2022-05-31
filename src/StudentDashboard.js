@@ -16,6 +16,7 @@ const StudentDashboard = ()=>{
 
 
     let examList = examArray.map((val,idx)=>{
+       
         return (<ExamCard key={idx} id={idx} title={val.name} nques={val.totalQuestions}/>)
     })
     

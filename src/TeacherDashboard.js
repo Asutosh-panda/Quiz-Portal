@@ -6,30 +6,7 @@ import "./TeacherDashboard.css";
 const TeacherDashboard = ()=>{
     const history = useHistory()
     const [prev_exam,setPrev_exam] = useState([
-        {
-            title:"OS",
-            date:"02.04.2022",
-            nques :"15",
-            time:"30",
-             
-        },
-        { 
-            title:"CN",
-            date:"02.04.2022",
-            nques :"5",
-            time:"20",
-             
-        },{
-            title:"CN",
-            date:"02.04.2022",
-            nques :"5",
-            time:"20",
-        },{
-            title:"CN",
-            date:"02.04.2022",
-            nques :"5",
-            time:"20",
-        },{
+     {
             title:"CN",
             date:"02.04.2022",
             nques :"5",
@@ -60,7 +37,7 @@ const TeacherDashboard = ()=>{
     return(
         <div className="TeacherDashboard">
             <div className="AssignedPapers">
-                <h1> AssignedPapers</h1>
+                <h1> Created Quiz </h1>
                 <div className="AssignedPapers-container">
                 <div className="AssignedPapers-previous">
                     {examArray}

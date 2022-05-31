@@ -3,29 +3,25 @@ import './Result.css'
 const Result = (props) => {
 
     const data = props.location.state
-  
+    console.log(data,"sip")
+    let username = localStorage.getItem('username')
+    let percentage = (data.obtainedMarks/data.totalMarks)*100
     return (
         <div className='ResultContainer'>
             <h1>Result</h1>
             <table >
                 <tr>
-                    <th>Question</th>
-                    <th>Correct Answer</th>
-                    <th>Your Answer</th>
-                    <th>Outcome</th>
+                    <th>Username</th>
+                    <th>totalQuestions</th>
+                    <th>Score</th>
+                    <th>Percentage</th>
                 </tr>
-                {data.map((val, key) => {
-                    return (
-                        <tr key={key}>
-                            <td>{val.question}</td>
-                            <td>{val[val.answer]}</td>
-                            <td>{val[val.submit]}</td>
-                            {val.submit === val.answer ?
-                            <td> "Correct" </td>: <td> "Wrong"</td>}
-                         
-                        </tr>
-                    )
-                })}
+                <tr>
+                    <td>{username}</td>
+                    <td>{data.totalMarks}</td>
+                    <td>{data.obtainedMarks}</td>
+                    <td>{percentage}</td>
+                </tr>
             </table>
         </div>
     )

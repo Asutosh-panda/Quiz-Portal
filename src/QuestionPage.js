@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./QuestionPage.css"
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 const QuestionPage=()=>{
     const [id,setId] = useState(0);
     const history = useHistory();
@@ -8,211 +9,6 @@ const QuestionPage=()=>{
     const[submitAnswer,setSubmitAnswer] = useState("")
     const quizArray = history.location.state;
     console.log(quizArray,"ojovf")
-//     const [quizArray,setQuestionArray]=useState([
-//         // {
-//         //      "question":"",
-//         //      "option1":"",
-//         //      "option2":"",
-//         //      "option3":"",
-//         //      "option4":"",
-//         //      "answer":"",
-//         //      "submit":"",
-//         //      "key":0
-//         // },
-// //         {
-// //             "question":"Second",
-// //             "option1":"1",
-// //             "option2":"2",
-// //             "option3":"3",
-// //             "option4":"4",
-// //             "answer":"option2",
-// //             "submit":"",
-// //             "key":2
-// //        },
-// //        {
-// //         "question":"Third",
-// //         "option1":"1",
-// //         "option2":"2",
-// //         "option3":"3",
-// //         "option4":"4",
-// //         "answer":"option3",
-// //         "submit":"",
-// //         "key":3
-// //    },
-// //    {
-// //     "question":"Fourth",
-// //     "option1":"1",
-// //     "option2":"2",
-// //     "option3":"3",
-// //     "option4":"4",
-// //     "answer":"option4",
-// //     "submit":"",
-// //     "key":4
-// // },
-// // {
-// //     "question":"Five",
-// //     "option1":"2",
-// //     "option2":"3",
-// //     "option3":"4",
-// //     "option4":"5",
-// //     "answer":"option4",
-// //     "submit":"",
-// //     "key":5
-// // },
-// // {
-// //     "question":"",
-// //     "option1":"",
-// //     "option2":"",
-// //     "option3":"",
-// //     "option4":"",
-// //     "answer":"",
-// //     "key":6
-// // },
-// // {
-// //     "question":"",
-// //     "option1":"",
-// //     "option2":"",
-// //     "option3":"",
-// //     "option4":"",
-// //     "answer":"",
-// //     "key":7
-// // },
-// // {
-// //     "question":"",
-// //     "option1":"",
-// //     "option2":"",
-// //     "option3":"",
-// //     "option4":"",
-// //     "answer":"",
-// //     "key":8
-// // },    {
-// //     "question":"",
-// //     "option1":"",
-// //     "option2":"",
-// //     "option3":"",
-// //     "option4":"",
-// //     "answer":"",
-// //     "key":9
-// // },    {
-// //     "question":"",
-// //     "option1":"",
-// //     "option2":"",
-// //     "option3":"",
-// //     "option4":"",
-// //     "answer":"",
-// //     "key":10
-// // },
-// // {
-// //     "question":"",
-// //     "option1":"",
-// //     "option2":"",
-// //     "option3":"",
-// //     "option4":"",
-// //     "answer":"",
-// //     "key":11
-// // },
-// // {
-// //    "question":"",
-// //    "option1":"",
-// //    "option2":"",
-// //    "option3":"",
-// //    "option4":"",
-// //    "answer":"",
-// //    "key":12
-// // },
-// // {
-// // "question":"",
-// // "option1":"",
-// // "option2":"",
-// // "option3":"",
-// // "option4":"",
-// // "answer":"",
-// // "key":13
-// // },
-// // {
-// // "question":"",
-// // "option1":"",
-// // "option2":"",
-// // "option3":"",
-// // "option4":"",
-// // "answer":"",
-// // "key":14
-// // },
-// // {
-// // "question":"",
-// // "option1":"",
-// // "option2":"",
-// // "option3":"",
-// // "option4":"",
-// // "answer":"",
-// // "key":15
-// // },
-// // {
-// // "question":"",
-// // "option1":"",
-// // "option2":"",
-// // "option3":"",
-// // "option4":"",
-// // "answer":"",
-// // "key":16
-// // },
-// // {
-// // "question":"",
-// // "option1":"",
-// // "option2":"",
-// // "option3":"",
-// // "option4":"",
-// // "answer":"",
-// // "key":17
-// // },
-// // {
-// // "question":"",
-// // "option1":"",
-// // "option2":"",
-// // "option3":"",
-// // "option4":"",
-// // "answer":"",
-// // "key":18
-// // },    {
-// // "question":"",
-// // "option1":"",
-// // "option2":"",
-// // "option3":"",
-// // "option4":"",
-// // "answer":"",
-// // "key":19
-// // },    {
-// // "question":"",
-// // "option1":"",
-// // "option2":"",
-// // "option3":"",
-// // "option4":"",
-// // "answer":"",
-// // "key":20
-// ])
-    // const [questionArray,setQuestionArray] = useState([]);
-    
-    //     console.log("sdf")
-    //     quizArray.questions.forEach(element => {
-    //         let question = element.question;
-    //         let option1 = element.options[0];
-    //         let option2 = element.options[1];
-    //         let option3 = element.options[2];
-    //         let option4 = element.options[3];
-    //         let obj = {
-    //             "question": question,
-    //             "option1": option1,
-    //             "option2": option2,
-    //             "option3": option3,
-    //             "option4": option4,
-    //             "submit":"",
-    //             "key":key
-    //         }
-            
-    //         setQuestionArray(prevState => [...prevState,obj])
-    //         setKey(key+1)
-           
-    // })
     
     console.log(quizArray)
     
@@ -268,10 +64,34 @@ const QuestionPage=()=>{
     const submitQuestion=(e)=>{
         e.preventDefault();
         let sure = prompt("do you want to submit? (y/n)")
-        if(sure==="yes" || sure==="y" || sure==="Y")
-            history.push({pathname:'/Result',state:quizArray})
+        if(sure==="yes" || sure==="y" || sure==="Y"){
+            let ansarr=[]
+            quizArray.forEach(element => {
+                let ans = element[element.submit]
+                ansarr.push(ans)
+            })
+            let payload={
+                "userId":localStorage.getItem("userId"),
+                "quizName":localStorage.getItem("quizName"),
+                "answers":ansarr
+            }
+            var token = localStorage.getItem("token");
+            axios.post(`https://quiz-portal-api.herokuapp.com/api/result/getResult`, payload,{headers: {
+                'x-auth-token': token,
+                'Accept' : 'application/json',
+                'Content-Type': 'application/json'
+        }
+            }).then(res=>{
+                console.log(res.data,"result")
+                history.push({pathname:'/Result',state:res.data})
+                
+            }   )    
+        }
+            
+           
+        }
         console.log("submit",quizArray,"jh");
-    }
+    
     const setAnswer=(e)=>{
         setSubmitAnswer(e.target.value)
         // console.log(e.target.id)

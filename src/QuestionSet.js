@@ -13,6 +13,7 @@ const QuestionSet=(props)=>{
     const [answer,setAnswer] = useState("");
     const title =props.location.state.title;
     const nques = props.location.state.nques;
+    const pass  = props.location.state.pass;
     console.log(props);
     const [questionArray,setQuestionArray]=useState([
         {
@@ -280,8 +281,9 @@ const QuestionSet=(props)=>{
         let payload = {
             "name": title,
             "questions": qobj,
-            "answers": ansarr,
+            "answer": ansarr,
             "totalQuestions":nques,
+            "passcode":pass,
             "creator":localStorage.getItem('userId')
 
         }
