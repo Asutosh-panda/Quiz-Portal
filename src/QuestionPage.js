@@ -26,20 +26,25 @@ const QuestionPage=()=>{
         console.log(id)
     }
     const nextQuestion=()=>{
-      
-        if(id>=quizArray.totalQuestions){
+       
+        if(id>quizArray.length-2){
            document.getElementById("next").disabled = true;
+          
         }
         else{
             document.getElementById("prev").disabled = false;
-            // console.log("option to be checked",quizArray[id].submit)
-            if(submitAnswer!=="")
+            
+            if(submitAnswer != ""){
+                console.log(document.getElementById(submitAnswer),"fs")
                 document.getElementById(submitAnswer).checked = true
-            if(quizArray[id+1].submit!==""){
-                document.getElementById(quizArray[id+1].submit).checked=true
+            }
+
+            if(quizArray[id].submit !=""){
+                document.getElementById(quizArray[id].submit).checked=true
             }
             else
-            document.getElementById(submitAnswer).checked = false
+                if(submitAnswer!="")
+                    document.getElementById(submitAnswer).checked = false
             setId(id+1);
         }
             
@@ -51,13 +56,15 @@ const QuestionPage=()=>{
          else{
             document.getElementById("next").disabled = false;
              // console.log("option to be checked",quizArray[id].submit)
-             if(submitAnswer!=="")
+             if(submitAnswer!="")
                  document.getElementById(submitAnswer).checked = true
-             if(quizArray[id-1].submit!==""){
+             if(quizArray[id-1].submit!=""){
                  document.getElementById(quizArray[id-1].submit).checked=true
              }
-             else
-             document.getElementById(submitAnswer).checked = false
+             else{
+                 if(submitAnswer!="")
+                  document.getElementById(submitAnswer).checked = false
+             }
              setId(id-1);
          }
     }
@@ -107,6 +114,7 @@ const QuestionPage=()=>{
         }
         console.log(quizArray,"after submit")
     }
+
     var but_list=[]
     for(var i=0;i<quizArray.length;i++)
             but_list.push(<button className="numberbutton" id={i} onClick={clickQuestion}>{i+1}</button>)
