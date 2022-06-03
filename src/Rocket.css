@@ -1,0 +1,35 @@
+.rocket_launch{
+   
+    animation: rocket_ani 1s ease-out infinite  ;
+}
+@keyframes rocket_ani {
+    0%{
+        transform: translateY(-20px);
+    }
+    50%{
+        transform: translateY(-60px);
+    }
+    75%{
+        transform: translateY(20px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
+
+/* .rocket_fly{
+    animation: rocket_fly_ani 2.5s ease-out;
+}
+@keyframes rocket_fly_ani {
+    0%{
+        transform: translateY(-40px);
+    }
+    50%{
+        transform: translateY(-160px);
+    }
+    100%{
+        transform: translateY(-800px);
+        opacity: 0;
+    }
+} */
+    

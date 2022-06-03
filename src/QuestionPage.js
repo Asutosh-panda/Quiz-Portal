@@ -3,6 +3,8 @@ import "./QuestionPage.css"
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Timer from './Timer';
+import Loader from "./Loader";
+
 const QuestionPage=()=>{
     const [id,setId] = useState(0);
     const history = useHistory();
@@ -76,6 +78,7 @@ const QuestionPage=()=>{
         let sure = prompt("do you want to submit? (y/n)")
         if(sure==="yes" || sure==="y" || sure==="Y"){
             let ansarr=[]
+            document.getElementById("loader").style.visibility = "visible"
             quizArray.forEach(element => {
                 let ans = element[element.submit]
                 ansarr.push(ans)
@@ -108,12 +111,12 @@ const QuestionPage=()=>{
         // document.getElementById(e.target.id).checked = false
     }
     const saveQuestion=()=>{
-        console.log(submitAnswer,"submitAnswer")
         quizArray[id].submit = submitAnswer
         console.log(quizArray)
         if(id<quizArray.length-1){
+           
             nextQuestion()
-        document.getElementById(submitAnswer).checked = false
+            document.getElementById(submitAnswer).checked = false
         }
         console.log(quizArray,"after submit")
     }
@@ -122,7 +125,7 @@ const QuestionPage=()=>{
     for(var i=0;i<quizArray.length;i++)
             but_list.push(<button className="numberbutton" id={i} onClick={clickQuestion}>{i+1}</button>)
 
-    return ( 
+    return ( <>
         <div className="questionpage_all">
         <Timer/>
         <div className="QuestionPage">
@@ -159,6 +162,10 @@ const QuestionPage=()=>{
             </div>
         </div>
         </div>
+        <div id="loader" style={{visibility:"hidden"}}>
+         <Loader  />
+         </div>
+         </>
     )
 }
 

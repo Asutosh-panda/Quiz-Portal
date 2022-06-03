@@ -12,7 +12,7 @@ import QuestionSet from './QuestionSet';
 import Result  from './Result';
 import { LoginProvider } from './LoginProvider';
 import TeacherCard from './TeacherCard';
-
+import Rocket from './Rocket';
 const App= ()=> {
 
   return (<>
@@ -27,7 +27,7 @@ const App= ()=> {
         <Route exact path="/QuestionPage" component={QuestionPage}/>
         <Route exact path="/QuestionSet" component={QuestionSet}/>
         <Route exact path="/Result" component={Result}/>
-     
+        <Route exact path="/Rocket" component={Rocket}/>
         <Route path="/" component={Home}/>
       </Switch>
       </LoginProvider>

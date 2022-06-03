@@ -5,9 +5,8 @@ const Timer = () => {
 
 	
 	const Ref = useRef(null);
-
-	
-	const [timer, setTimer] = useState('00:00:00');
+	let time = parseInt(localStorage.getItem("time"));
+	const [timer, setTimer] = useState(`00:${time}:00`);
 
 
 	const getTimeRemaining = (e) => {
@@ -38,7 +37,7 @@ const Timer = () => {
 	const clearTimer = (e) => {
 
 		
-		setTimer('00:20:00');
+		setTimer(`00:${time}:00`);
 
 		// If you try to remove this line the
 		// updating of timer Variable will be

@@ -5,25 +5,7 @@ import PrevResult from "./PrevResult";
 import "./TeacherDashboard.css";
 const TeacherDashboard = ()=>{
     const history = useHistory()
-    const [prev_exam,setPrev_exam] = useState([
-     {
-            title:"CN",
-            date:"02.04.2022",
-            nques :"5",
-            time:"20",
-        },
-        {
-            title:"CN",
-            date:"02.04.2022",
-            nques :"5",
-            time:"20",
-        },{
-            title:"CN",
-            date:"02.04.2022",
-            nques :"5",
-            time:"20",
-        }
-    ]);
+    const [prev_exam,setPrev_exam] = useState([]);
     const examArray = prev_exam.map((exam,index) => {
         return(
             <PrevResult props={exam} key={index}/>

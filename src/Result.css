@@ -1,4 +1,5 @@
-table, th, td {
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600);
+table,th ,td{
     border:1px solid black;
   }
 table{
@@ -8,4 +9,14 @@ table{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.table-head{
+    /* background-color: #8BC34A; */
+    color: black;
+    font-family: Roboto;
+}
+tr{
+    text-align: center;
+    font-size: large;
 }

@@ -14,10 +14,10 @@ const StudentDashboard = ()=>{
         }).then(res=>setExamArray(res.data.quiz)).catch(e=>console.log(e))
     },[])
 
-
+    
     let examList = examArray.map((val,idx)=>{
        
-        return (<ExamCard key={idx} id={idx} title={val.name} nques={val.totalQuestions}/>)
+        return (<ExamCard key={idx} id={idx} title={val.name} nques={val.totalQuestions} time={val.time}/>)
     })
     
     return(
@@ -29,25 +29,9 @@ const StudentDashboard = ()=>{
                  </div>
                  
             </div>
-            {/* <div className="Upcoming">
-                <h1> Upcoming </h1>
-                <div className="ExamCard-container">
-                 <ExamCard/>
-                 <ExamCard/>
-                 <ExamCard/>
-                 <ExamCard/>
-                 </div>
-            </div>
-            <div className="Results">
-                <h1> Results </h1>
-                <div className="ExamCard-container">
-                 <ExamCard/>
-                 <ExamCard/>
-                 <ExamCard/>
-                 <ExamCard/>
-                 </div>
-            </div> */}
+          
         </div>
+        
     )
 }
 

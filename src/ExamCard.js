@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import "./ExamCard.css"
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-const ExamCard = ({ title, nques, id }) => {
+import Loader from "./Loader";
+const ExamCard = ({ title, nques, id,time }) => {
     const history = useHistory();
-
+    console.log(time)
     const [pass, setPass] = useState("")
     const [quizdata, setQuizData] = useState([]);
     const setArray = (quizdata) => {
@@ -34,7 +35,8 @@ const ExamCard = ({ title, nques, id }) => {
         console.log(e.target.title)
         let t = e.target.title
         var token = localStorage.getItem('token');
-        // console.log(passcode)
+        
+        
        
         axios.get(`https://quiz-portal-api.herokuapp.com/api/quiz/getQuizByName/${e.target.title}`, {
             headers: {
@@ -51,6 +53,7 @@ const ExamCard = ({ title, nques, id }) => {
                 else {
                     localStorage.setItem("quizName", t)
                     let quizarr = setArray(res.data.quizData)
+                    localStorage.setItem("time",time)
                     history.push({ pathname: '/QuestionPage', state: quizarr })
                 }
             }).catch(e => console.log(e))
@@ -62,13 +65,14 @@ const ExamCard = ({ title, nques, id }) => {
 
 
 return (
+    <>
     <div className="ExamCard">
         <div className="ExamCard-header">
             <label>{title}</label>
         </div>
         <div className="ExamCard-body">
             <label>No of question: {nques}</label>
-            <label>Time: 20mins</label>
+            <label>Time: {time} mins</label>
 
         </div>
         <div className="ExamCard-footer">
@@ -76,6 +80,10 @@ return (
             <button onClick={startExam} id={id} title={title} >Start Exam</button>
         </div>
     </div>
+    <div id="loader" style={{visibility:"hidden"}}>
+         <Loader  />
+         </div>
+         </>
 );
 }
 

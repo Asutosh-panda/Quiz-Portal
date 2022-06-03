@@ -1,5 +1,7 @@
 .QuestionSet{
     display: flex;
+    background: linear-gradient(125deg, #ECFCFF 0%, #ECFCFF 40%, #B2FCFF calc(40% + 1px), #B2FCFF 60%, #6ccae1 calc(60% + 1px), #5EDFFF 72%, #65bbc4 calc(72% + 1px), #8ca2ff 100%);
+    height: 100vh;
 }
 .Question textarea{
     width: 100%;
