@@ -13,6 +13,10 @@
     justify-content: space-evenly;
 
 }
+.QuestionButton{
+    display: flex;
+    justify-content: space-around;
+}
 .QuestionPage{
     margin-left: 15vh;
 }
@@ -41,27 +45,192 @@
 
 
 
-/* CSS */
-/* .next {
-  background-color: #c2fbd7;
-  border-radius: 100px;
-  box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
-  color: green;
-  cursor: pointer;
-  display: inline-block;
-  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
-  padding: 7px 20px;
-  text-align: center;
-  text-decoration: none;
-  transition: all 250ms;
-  border: 0;
-  font-size: 16px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+
+  
+  p{
+    color:#fff;
+    text-align: center;
+    padding-top: 500px;
+    font-size: 10px;
+  }
+  
+  a{
+     text-decoration:none;
+     color:#fff;
+  }
+  
+  a:hover{
+     color:#2ecc71;
+  }
+  
+  .main{
+    width: 100%;
+  }
+  
+
+  
+  button{
+    text-align: center;
+    cursor: pointer;
+    font: size 2rem;;
+    
+  }
+  
+  
+  
+  /*Button One*/
+
+  
+  
+  /*Button Two*/
+  .next {
+    border-radius: 4px;
+    background-color:#eaf724;
+    border: none;
+    padding: 10px;
+    
+    transition: all 0.5s;
+  }
+  
+  
+  .next span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .next span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .next:hover span {
+    padding-right: 25px;
+  }
+  
+  .next:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+  
+  
+  /*Button Three*/
+  .save {
+      position: relative;
+      background-color: #47c6ee;;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      -webkit-transition-duration: 0.4s; /* Safari */
+      transition-duration: 0.4s;
+      text-decoration: none;
+      overflow: hidden;
+  }
+  
+  .save:hover{
+     background:#2ecc71;
+     box-shadow:0px 2px 10px 5px #97B1BF;
+     color:#000;
+  }
+  
+  .save:after {
+      content: "";
+      background: #47c6ee;;
+      display: block;
+      position: absolute;
+      padding-top: 300%;
+      padding-left: 350%;
+      margin-left: -20px !important;
+      margin-top: -120%;
+      opacity: 0;
+      transition: all 0.8s
+  }
+  
+  .save:active:after {
+      padding: 0;
+      margin: 0;
+      opacity: 1;
+      transition: 0s
+  }
+  .QuestionButton{
+      display: flex;
+  }
+  .prev {
+    border-radius: 4px;
+    background-color:#d35400;
+    border: none;
+    padding: 10px;
+    
+    transition: all 0.5s;
+  }
+  
+  
+  .prev span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .prev span:after {
+    content: '«';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 20px;
+    transition: 0.5s;
+  }
+  
+  .prev:hover span {
+    padding-right: 25px;
+  }
+  
+  .prev:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+  .submit {
+    position: relative;
+    background-color: #2ecc71;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
 }
 
-.next:hover {
-  box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
-  transform: scale(1.05) rotate(-1deg);
-} */
+.submit:hover{
+   background:#47c6ee;
+   box-shadow:0px 2px 10px 5px #97B1BF;
+   color:#000;
+}
+
+.submit:after {
+    content: "";
+    background: #2ecc71;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.submit:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}

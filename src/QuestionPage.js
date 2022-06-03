@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./QuestionPage.css"
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import Timer from './Timer';
 const QuestionPage=()=>{
     const [id,setId] = useState(0);
     const history = useHistory();
@@ -21,8 +22,10 @@ const QuestionPage=()=>{
         if(quizArray[parseInt(e.target.id)].submit!==""){
         document.getElementById(quizArray[parseInt(e.target.id)].submit).checked=true
     }
-    else
-    document.getElementById(submitAnswer).checked = false
+    else{
+    if(submitAnswer!="")
+                    document.getElementById(submitAnswer).checked = false
+    }
         console.log(id)
     }
     const nextQuestion=()=>{
@@ -97,7 +100,7 @@ const QuestionPage=()=>{
             
            
         }
-        console.log("submit",quizArray,"jh");
+      
     
     const setAnswer=(e)=>{
         setSubmitAnswer(e.target.value)
@@ -120,7 +123,10 @@ const QuestionPage=()=>{
             but_list.push(<button className="numberbutton" id={i} onClick={clickQuestion}>{i+1}</button>)
 
     return ( 
+        <div className="questionpage_all">
+        <Timer/>
         <div className="QuestionPage">
+        
             <div className="QuestionsContainer">
                 <div className="QuestionBox">
                     <div className="Question">
@@ -134,8 +140,12 @@ const QuestionPage=()=>{
                     <label><input type="radio" id="option4" value="option4" name="question" /> (D) { quizArray[id].option4}</label>
                     </div>
                     <div className="QuestionButton">
-                        <button className="prev" id="prev" onClick={prevQuestion}>Prev</button>
-                        <button className="next" id="next" onClick={nextQuestion}>Next</button>
+                    <div className="sub-main">
+                        <button className="prev" id="prev" onClick={prevQuestion}><span>Prev</span></button>
+                        </div>
+                        <div className="sub-main">
+                        <button className="next" id="next" onClick={nextQuestion}><span>Next</span></button>
+                        </div>
                         <button className="save" onClick={saveQuestion}>Save</button>
                         <button className="submit" type="submit" onClick={submitQuestion}>Submit</button>
                     </div>
@@ -147,6 +157,7 @@ const QuestionPage=()=>{
                         {but_list}
                         </div>
             </div>
+        </div>
         </div>
     )
 }

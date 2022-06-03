@@ -46,7 +46,7 @@ const ExamCard = ({ title, nques, id }) => {
             .then(res => {
                 console.log(res.data.quizData.passcode)
                 if (res.data.quizData.passcode !== pass) {
-                    alert("gandi mara")
+                    alert("incorrect password")
                 }
                 else {
                     localStorage.setItem("quizName", t)
@@ -80,3 +80,5 @@ return (
 }
 
 export default ExamCard;
+
+
